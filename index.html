@@ -17,6 +17,9 @@
         .table{
             margin-top: 20px;
         }
+        .form-control{
+            margin-top: 20px;
+        }
     </style>
 
     <title>Lista Telefonica</title>
@@ -48,7 +51,12 @@
                 <td> {{contato.telefone}}</td>
             </tr>
         </table>
+        <hr/>
+        <input class="form-control" type="text" ng-model="nome"/>
+        <input class="form-control" type="text" ng-model="telefone"/>
 
+        {{nome}}
+        {{telefone}}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
