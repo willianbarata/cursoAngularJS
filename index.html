@@ -52,6 +52,7 @@
             $scope.adicionarContato = function(contato){
                 $scope.contatos.push(angular.copy(contato));
                 delete $scope.contato;
+                $scope.contatoForm.$setPristine();
             }
             $scope.apagarContatos = function(contatos){
                 $scope.contatos = contatos.filter(function (contato){
@@ -90,14 +91,21 @@
         É válido: {{contatoForm.$valid}} </br>
         É inválido: {{contatoForm.$invalid}} </br>
         <form name="contatoForm">
-            <input class="form-control" type="text" ng-required="true" ng-model="contato.nome" placeholder="Nome"/>
-            <input class="form-control" type="text" ng-required="true" ng-model="contato.telefone" placeholder="Telefone"/>
+            <input class="form-control" type="text" ng-required="true" name="nome" ng-model="contato.nome" placeholder="Nome"/>
+            <input class="form-control" type="text" ng-required="true" name="telefone" ng-model="contato.telefone" placeholder="Telefone"/>
             <!-- Exemplo
                 <select class="form-control" ng-model="contato.operadora" ng-options="operadora.codigo as operadora.nome for operadora in operadoras"> -->
             <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">    
                 <option value=""> Selecione uma operadora</option>
             </select>
         </form>
+    </br>
+        <div ng-show="contatoForm.nome.$invalid && contatoForm.nome.$dirty" class="alert alert-danger">
+            Por favor, preencha o nome !!
+        </div>
+        <div ng-show="contatoForm.telefone.$invalid && contatoForm.telefone.$dirty" class="alert alert-danger">
+            Por favor, preencha o telefone !!
+        </div>
         <button class="btn btn-primary btn-block" 
                 ng-click="adicionarContato(contato)"
                 ng-disabled="contatoForm.$invalid" > Adicionar Contato</button>
